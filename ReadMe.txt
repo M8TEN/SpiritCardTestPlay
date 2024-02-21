@@ -34,6 +34,9 @@ Command list:
     Outputs [iterations] random numbers in the range from [from] to [to]. If a number would be rolled more than [max_repeats], a new number will be rolled.
     Aditionally, a number of targets can be defined as optional parameters, which has the effect of printing the name of the target rather than just the number.
 
+- remove, [card], [from]:
+    Removes a card from [from]. [from] can either be 'hand' or 'deck'. The card is deleted without spending it's mana cost.
+
 - end
     Ends the current turn. Adds one max mana, fills up max mana, fills up Tamer Mana accordingly, switches Attack Token, and draws a card
 

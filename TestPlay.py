@@ -311,6 +311,23 @@ while True:
                             display_game_state(f"Hit target {res}")
             except IndexError:
                 display_game_state("Invalid number of parameters")
+        
+        case "remove":
+            try:
+                card: str = command[1]
+                place: str = command[2]
+
+                if place == "hand":
+                    hand.remove(card)
+                elif place == "deck":
+                    deck.remove(card)
+                else:
+                    display_game_state(f"Card Location {place} unknown. Use 'hand' or 'deck' instead")
+            
+            except IndexError:
+                display_game_state("Invalid number of parameters")
+            except ValueError:
+                display_game_state(f"Couldn't find card '{card}' in '{place}'")
 
         case "save":
             with open("GameState.json", "w") as state_file:
