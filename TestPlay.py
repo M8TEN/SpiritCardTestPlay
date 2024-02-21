@@ -10,7 +10,7 @@ POSITIONAL_CARDS: list = BURROWED_CARDS+TOP_CARDS
 
 def get_deck() -> list:
     # Insert your file name here
-    with open("Flame Deck.txt") as file:
+    with open("Decks/Flame Deck.txt") as file:
         deck: list = []
         for line in file:
             end_idx: int = line.index(")")
@@ -273,7 +273,7 @@ while True:
         
         case "random":
             try:
-                begin: int = int(command[1])
+                begin: int = max(int(command[1]), 1)
                 end: int = int(command[2])
                 iterations: int = int(command[3])
                 max_repeats: int = int(command[4])
@@ -291,11 +291,11 @@ while True:
                         if not res in frequencies:
                             frequencies[res] = 1
                             successful += 1
-                            display_game_state(f"Hit target '{target_map[res]}'")
+                            display_game_state(f"Hit target '{target_map[res-1]}'")
                         elif res in frequencies and frequencies[res] < max_repeats:
                             frequencies[res] += 1
                             successful += 1
-                            display_game_state(f"Hit target '{target_map[res]}'")
+                            display_game_state(f"Hit target '{target_map[res-1]}'")
                 
                 else:
                     successful: int = 0
