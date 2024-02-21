@@ -1,9 +1,7 @@
 from random import shuffle, randint
 import json
 
-'''Note that the POSITIONAL_CARDS are tied to the deck you are playing. If you have cards in your deck that start at the top or bottom of your deck,
-you have to change this constant to contain the cards you need.
-Additionally, replace the elements in BURROWED_CARDS and TOP_CARDS to contain the cards that go at the bottom and top of the deck respectively.
+'''Replace the elements in BURROWED_CARDS and TOP_CARDS to contain the cards that go at the bottom and top of the deck respectively.
 Make sure to always write out the Mana cost after the card's name, otherwise an error will occur.'''
 
 BURROWED_CARDS: list = ["Pa'sschat (8 Mana)", "Ravages of War (9 Mana)"]
@@ -273,6 +271,47 @@ while True:
             except IndexError:
                 display_game_state("Invalid number of parameters")
         
+        case "random":
+            try:
+                begin: int = int(command[1])
+                end: int = int(command[2])
+                iterations: int = int(command[3])
+                max_repeats: int = int(command[4])
+                frequencies: dict = {}
+                if len(command) > 5:
+                    target_map: list = []
+                    idx: int = 5
+                    while idx < len(command):
+                        target_map.append(command[idx])
+                        idx += 1
+                    
+                    successful: int = 0
+                    while successful < iterations:
+                        res: int = randint(begin, end)
+                        if not res in frequencies:
+                            frequencies[res] = 1
+                            successful += 1
+                            display_game_state(f"Hit target '{target_map[res]}'")
+                        elif res in frequencies and frequencies[res] < max_repeats:
+                            frequencies[res] += 1
+                            successful += 1
+                            display_game_state(f"Hit target '{target_map[res]}'")
+                
+                else:
+                    successful: int = 0
+                    while successful < iterations:
+                        res: int = randint(begin, end)
+                        if not res in frequencies:
+                            frequencies[res] = 1
+                            successful += 1
+                            display_game_state(f"Hit target {res}")
+                        elif res in frequencies and frequencies[res] < max_repeats:
+                            frequencies[res] += 1
+                            successful += 1
+                            display_game_state(f"Hit target {res}")
+            except IndexError:
+                display_game_state("Invalid number of parameters")
+
         case "save":
             with open("GameState.json", "w") as state_file:
                 game_state: list = [deck, hand, turn, mana, tamer_mana, attack_token, core_hp]
