@@ -1,16 +1,32 @@
 from random import shuffle, randint
 import json
+from platform import system as p_sys
+from os import system as os_sys
+from os import listdir
+from os.path import exists
+from keyboard import is_pressed
 
 '''Replace the elements in BURROWED_CARDS and TOP_CARDS to contain the cards that go at the bottom and top of the deck respectively.
 Make sure to always write out the Mana cost after the card's name, otherwise an error will occur.'''
 
-BURROWED_CARDS: list = ["Pa'sschat (8 Mana)", "Ravages of War (9 Mana)"]
-TOP_CARDS: list = ["Allegiance (2 Mana)"]
+BURROWED_CARDS: list = []
+TOP_CARDS: list = []
 POSITIONAL_CARDS: list = BURROWED_CARDS+TOP_CARDS
 
-def get_deck() -> list:
-    # Insert your file name here
-    with open("Decks/Flame Deck.txt") as file:
+def get_deck(deck_path: str) -> list:
+    pos_path: str = "Decks/"+deck_path[:len(deck_path)-4]+"_POSITIONAL.json"
+    if exists(pos_path):
+        with open(pos_path) as pos_file:
+            content = json.load(pos_file)
+        global BURROWED_CARDS
+        global TOP_CARDS
+        global POSITIONAL_CARDS
+
+        BURROWED_CARDS = content[0]
+        TOP_CARDS = content[1]
+        POSITIONAL_CARDS = BURROWED_CARDS+TOP_CARDS
+
+    with open("Decks/"+deck_path) as file:
         deck: list = []
         for line in file:
             end_idx: int = line.index(")")
@@ -118,13 +134,37 @@ def average_mana_cost(deck) -> float:
     
     return total/len(deck)
 
+in_main_menu: bool = True
+decks: list = listdir("Decks")
+selected: str = ""
+
+d: int = 0
+while d < len(decks):
+    if not decks[d].endswith(".json"):
+        decks[d] = decks[d][:len(decks[d])-4]
+        d += 1
+    else:
+        del decks[d]
+
+while in_main_menu:
+    print("Select a deck:")
+    for d in decks:
+        print(d)
+
+    selected = input("\n- ")
+    if selected in decks:
+        in_main_menu = False
+        print("Deck selected")
+    else:
+        print("Invalid Deck.")
+
 new_game: bool = input("Dou you want to load a previous game? (y/n) ").lower() == "n"
 
 if new_game:
     with open("GameLog.txt", "w") as file:
         file.write("")
     
-    deck: list = get_deck()
+    deck: list = get_deck(selected.strip()+".txt")
     assert len(deck) == 45, "Invalid amount of cards!"
 
     hand: list = mulligan(deck)
