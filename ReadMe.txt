@@ -52,4 +52,4 @@ Command list:
 
 
 Almost all interactions are logged to the file "GameLog.txt" located in the same directory as the program.
-Please provide a deck in form of a .txt file in the same directory. Change the file name in the code at the correct place.
+Decks must be located in the 'Decks' folder in the directory of the main file.
