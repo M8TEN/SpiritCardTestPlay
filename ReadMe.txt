@@ -21,8 +21,8 @@ Command list:
 - damage core, [amount]
     Subtracts 'amount' from your Core HP. If you have 0 or less HP, the game will tell you that you lost and ends
 
-- add, [card_name], [to]
-    Adds 'card_name' to 'to'. 'to' can either be 'deck' or 'hand'
+- add, [card_name], [to], (start), (end)
+    Adds 'card_name' to 'to'. 'to' can either be 'deck' or 'hand'. (start) and (end) define the range of where the card can be inserted.
 
 - transform, [replace_card], [transform_card]
     Transforms 'replace_card' into 'transform_card' in your hand

@@ -277,9 +277,16 @@ while True:
             try:
                 card_name: str = command[1]
                 to: str = command[2]
+                range_start: int = 0
+                range_end: int = len(deck)-1
+
+                if len(command) > 3:
+                    range_start = int(command[3])
+                if len(command) > 4:
+                    range_end = int(command[4])
 
                 if to == "deck":
-                    deck.insert(randint(0,len(deck)-1), card_name)
+                    deck.insert(randint(range_start,range_end), card_name)
                 elif to == "hand" and len(hand) < 10:
                     hand.append(card_name)
                 elif to == "hand" and len(hand) >= 10:
