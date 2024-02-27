@@ -40,6 +40,11 @@ try:
     burrowed_cards: list = input("Please enter all card names of burrowed cards\nCards are seperated by a comma. Do not enter the mana cost of the card:\n").split(",")
     top_cards: list = input("Please enter all card names of top cards\nCards are seperated by a comma. Do not enter the mana cost of the card:\n").split(",")
 
+    if burrowed_cards == [""]:
+        burrowed_cards = []
+    if top_cards == [""]:
+        top_cards = []
+
     idx: int = 0
 
     while idx < len(burrowed_cards):

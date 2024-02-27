@@ -4,7 +4,6 @@ from platform import system as p_sys
 from os import system as os_sys
 from os import listdir
 from os.path import exists
-from keyboard import is_pressed
 
 '''Replace the elements in BURROWED_CARDS and TOP_CARDS to contain the cards that go at the bottom and top of the deck respectively.
 Make sure to always write out the Mana cost after the card's name, otherwise an error will occur.'''
