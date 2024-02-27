@@ -38,6 +38,9 @@ Command list:
 - remove, [card], [from]:
     Removes a card from [from]. [from] can either be 'hand' or 'deck'. The card is deleted without spending it's mana cost.
 
+- examine
+    Prints out how many cards are left in your deck.
+
 - end
     Ends the current turn. Adds one max mana, fills up max mana, fills up Tamer Mana accordingly, switches Attack Token, and draws a card
 

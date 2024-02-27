@@ -374,6 +374,9 @@ while True:
                 display_game_state("Invalid number of parameters")
             except ValueError:
                 display_game_state(f"Couldn't find card '{card}' in '{place}'")
+        
+        case "examine":
+            display_game_state(f"There are {len(deck)} cards left in your deck")
 
         case "save":
             with open("GameState.json", "w") as state_file:
