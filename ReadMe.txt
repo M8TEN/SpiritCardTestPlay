@@ -3,6 +3,8 @@ This program uses commands to interact with the user. All arguments for a comman
 
 Whenever a card is used as an argument, always add the mana cost in brackets to the end of the name.
 
+If you want to assign the Attack Token to a specific user, use -B or -M as a system input.
+
 Command list:
 () round brackets means optional parameter, [] square brackets means required parameter
 

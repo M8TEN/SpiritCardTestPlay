@@ -4,6 +4,7 @@ from platform import system as p_sys
 from os import system as os_sys
 from os import listdir
 from os.path import exists
+from sys import argv
 
 '''Replace the elements in BURROWED_CARDS and TOP_CARDS to contain the cards that go at the bottom and top of the deck respectively.
 Make sure to always write out the Mana cost after the card's name, otherwise an error will occur.'''
@@ -171,7 +172,10 @@ if new_game:
     turn: int = 1
     mana: int = 1
     tamer_mana: int = 0
-    attack_token: bool = (randint(0,1) == 0)
+    if len(argv) == 2:
+        attack_token: bool = argv[1] == "-B"
+    else:
+        attack_token: bool = (randint(0,1) == 0)
     core_hp: int = 30
 
 else:
