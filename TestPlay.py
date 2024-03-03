@@ -196,7 +196,7 @@ while True:
     else:
         player: str = "M8TEN"
     
-    out: str = f"Turn: {turn}\nMana: {mana}\nTamer Mana: {tamer_mana}\nAttack Token: {player}\nCore HP: {core_hp}"
+    out: str = f"\nTurn: {turn}\nMana: {mana}\nTamer Mana: {tamer_mana}\nAttack Token: {player}\nCore HP: {core_hp}"
     display_game_state(out)
     display_game_state(str(hand))
     command = input("Enter command: ")
